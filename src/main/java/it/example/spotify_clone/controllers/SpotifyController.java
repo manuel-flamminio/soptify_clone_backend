@@ -49,4 +49,9 @@ public class SpotifyController {
         return ResponseEntity.ok(service.getAllAlbums());
     }
 
+    @GetMapping(value = "/albums/{id}/cover", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<Resource> getAlbumCover(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getAlbumCover(id));
+    }
+
 }
