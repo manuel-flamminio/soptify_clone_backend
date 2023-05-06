@@ -94,4 +94,15 @@ public class SpotifyService {
         return songRepository.save(song);
     }
 
+    public Resource getAudio(Long songID) {
+        Song song = songRepository.findById(songID).
+                orElseThrow(() -> new ElementNotFoundException("song: " + songID));
+
+        return FileUtility.getInstance().load(song.getAlbum().getId() + song.getTitle(), false);
+    }
+
+
+    public Song getSong(Long songID) {
+        return songRepository.findById(songID).orElseThrow(() -> new ElementNotFoundException("song: " + songID));
+    }
 }

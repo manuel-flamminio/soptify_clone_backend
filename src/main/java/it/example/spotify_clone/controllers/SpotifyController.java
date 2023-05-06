@@ -66,5 +66,14 @@ public class SpotifyController {
         return ResponseEntity.ok(service.addSong(request.getTitle(), request.getAudio(), request.getAlbumID(), request.getArtistID()));
     }
 
+    @GetMapping(value = "/songs/{id}/audio", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    private ResponseEntity<Resource> getAudio(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getAudio(id));
+    }
+
+    @GetMapping("/songs/{id}")
+    public ResponseEntity<Song> getSong(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getSong(id));
+    }
 
 }
