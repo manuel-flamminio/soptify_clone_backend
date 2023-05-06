@@ -59,4 +59,12 @@ public class SpotifyController {
         return ResponseEntity.ok(service.getAlbum(id));
     }
 
+    @PostMapping("/songs")
+    private ResponseEntity<Song> addSong(
+            @Valid @ModelAttribute AddSong request
+            ) {
+        return ResponseEntity.ok(service.addSong(request.getTitle(), request.getAudio(), request.getAlbumID(), request.getArtistID()));
+    }
+
+
 }

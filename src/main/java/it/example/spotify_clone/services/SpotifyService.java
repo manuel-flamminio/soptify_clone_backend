@@ -73,4 +73,25 @@ public class SpotifyService {
                 orElseThrow(() -> new ElementNotFoundException("album: " + albumID));
     }
 
+    @Transactional
+    public Song addSong(String title, MultipartFile audio, Long albumID, Long artistID) {
+        Song song = new Song();
+        Album album = albumRepository.findById(albumID).
+                orElseThrow(() -> new ElementNotFoundException("album: " + albumID));
+
+        Artist artist = artistRepository.findById(artistID).
+                orElseThrow(() -> new ElementNotFoundException("artist: " + artistID));
+
+        song.setTitle(title);
+        song.setAlbum(album);
+        song.setArtist(artist);
+
+        String audioName = album.getId() + title;
+        song.setAudio(audioName);
+
+        FileUtility.getInstance().store(audio, audioName, false);
+
+        return songRepository.save(song);
+    }
+
 }
