@@ -101,6 +101,9 @@ public class SpotifyService {
         return FileUtility.getInstance().load(song.getAlbum().getId() + song.getTitle(), false);
     }
 
+    public List<ReducedSongInfo> getAlbumSongs(Long albumID) {
+        return songRepository.findByAlbum_Id(albumID);
+    }
 
     public Song getSong(Long songID) {
         return songRepository.findById(songID).orElseThrow(() -> new ElementNotFoundException("song: " + songID));
