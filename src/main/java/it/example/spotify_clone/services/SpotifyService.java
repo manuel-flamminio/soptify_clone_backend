@@ -30,5 +30,15 @@ public class SpotifyService {
     @Autowired
     private SongRepository songRepository;
 
+    public List<Artist> getAllArtists() {
+        return artistRepository.findAll();
+    }
+
+    public Artist addArtist(String artistName) {
+        Artist artist = new Artist();
+        artist.setName(artistName);
+
+        return artistRepository.save(artist);
+    }
 
 }

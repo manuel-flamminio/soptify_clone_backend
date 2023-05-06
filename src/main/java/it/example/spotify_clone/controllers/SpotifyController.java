@@ -27,4 +27,14 @@ public class SpotifyController {
     @Autowired
     private SpotifyService service;
 
+    @GetMapping("/artists")
+    public ResponseEntity<List<Artist>> getAllArtists() {
+        return ResponseEntity.ok(service.getAllArtists());
+    }
+
+    @PostMapping("/artists")
+    public ResponseEntity<Artist> addArtist(@RequestParam("name") String artistName) {
+        return ResponseEntity.ok(service.addArtist(artistName));
+    }
+
 }
