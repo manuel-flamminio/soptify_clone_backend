@@ -54,4 +54,9 @@ public class SpotifyController {
         return ResponseEntity.ok(service.getAlbumCover(id));
     }
 
+    @GetMapping("/albums/{id}")
+    public ResponseEntity<Album> getAlbum(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getAlbum(id));
+    }
+
 }

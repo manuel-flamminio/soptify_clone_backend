@@ -68,5 +68,9 @@ public class SpotifyService {
         return FileUtility.getInstance().load(album.getArtist().getId() + album.getTitle(), true);
     }
 
+    public Album getAlbum(Long albumID) {
+        return albumRepository.findById(albumID).
+                orElseThrow(() -> new ElementNotFoundException("album: " + albumID));
+    }
 
 }
