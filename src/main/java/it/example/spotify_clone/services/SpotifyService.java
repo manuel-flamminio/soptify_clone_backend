@@ -41,4 +41,24 @@ public class SpotifyService {
         return artistRepository.save(artist);
     }
 
+    public List<ReducedAlbumInfo> getAllAlbums() {
+        return albumRepository.findBy();
+    }
+
+    @Transactional
+    public Album addAlbum(String albumTitle, MultipartFile albumCover, Long artistID) {
+        Artist artist = artistRepository.findById(artistID).
+                orElseThrow(() -> new ElementNotFoundException("artist: " + artistID));
+
+        Album album = new Album();
+        album.setArtist(artist);
+        album.setTitle(albumTitle);
+
+        String coverName = artistID + albumTitle;
+        album.setCover(coverName);
+
+        FileUtility.getInstance().store(albumCover, coverName, true);
+        return albumRepository.save(album);
+    }
+
 }

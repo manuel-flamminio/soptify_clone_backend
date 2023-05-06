@@ -37,4 +37,16 @@ public class SpotifyController {
         return ResponseEntity.ok(service.addArtist(artistName));
     }
 
+    @PostMapping(value = "/albums", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<Album> addAlbum(
+            @Valid @ModelAttribute AddAlbum request
+            ) {
+        return ResponseEntity.ok(service.addAlbum(request.getTitle(), request.getCover(), request.getArtistID()));
+    }
+
+    @GetMapping("/albums")
+    public ResponseEntity<List<ReducedAlbumInfo>> getAllAlbums() {
+        return ResponseEntity.ok(service.getAllAlbums());
+    }
+
 }
