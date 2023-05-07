@@ -46,13 +46,14 @@ public class SpotifyService {
     }
 
     @Transactional
-    public Album addAlbum(String albumTitle, MultipartFile albumCover, Long artistID) {
+    public Album addAlbum(String albumTitle, MultipartFile albumCover, Long artistID, String description) {
         Artist artist = artistRepository.findById(artistID).
                 orElseThrow(() -> new ElementNotFoundException("artist: " + artistID));
 
         Album album = new Album();
         album.setArtist(artist);
         album.setTitle(albumTitle);
+        album.setDescription(description);
 
         String coverName = artistID + albumTitle;
         album.setCover(coverName);

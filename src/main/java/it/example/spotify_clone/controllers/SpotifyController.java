@@ -41,7 +41,7 @@ public class SpotifyController {
     public ResponseEntity<Album> addAlbum(
             @Valid @ModelAttribute AddAlbum request
             ) {
-        return ResponseEntity.ok(service.addAlbum(request.getTitle(), request.getCover(), request.getArtistID()));
+        return ResponseEntity.ok(service.addAlbum(request.getTitle(), request.getCover(), request.getArtistID(), request.getDescription()));
     }
 
     @GetMapping("/albums")
