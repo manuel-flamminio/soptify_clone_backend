@@ -2,6 +2,7 @@ FROM maven:3.8-openjdk-17 as builder
 
 ENV TARGET=/home/usr/spotify
 RUN mkdir -p $TARGET
+RUN mkdir -p /var/lib/spotify_clone
 WORKDIR $TARGET
 
 COPY . $TARGET

@@ -15,7 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileUtility {
-    public static final String PATH_IMAGE = "/home/azeze/Data/Todos/Uni/Spring/spotify_storage";
+    public static final String PATH_IMAGE = "/var/lib/spotify_clone";
     private static final String IMAGE_EXTENSION = ".png";
     private static final String AUDIO_EXTENSION = ".mp3";
     private static FileUtility instance;
