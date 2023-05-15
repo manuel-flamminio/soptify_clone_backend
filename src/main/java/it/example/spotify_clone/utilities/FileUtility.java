@@ -2,7 +2,6 @@ package it.example.spotify_clone.utilities;
 
 import it.example.spotify_clone.exceptions.ElementAlreadyExistException;
 import it.example.spotify_clone.exceptions.ElementNotFoundException;
-import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +15,7 @@ import java.nio.file.Paths;
 
 public class FileUtility {
     public static final String PATH_IMAGE = "/var/lib/spotify_clone";
-    private static final String IMAGE_EXTENSION = ".png";
+    private static final String IMAGE_EXTENSION = ".webp";
     private static final String AUDIO_EXTENSION = ".mp3";
     private static FileUtility instance;
 
@@ -45,10 +44,6 @@ public class FileUtility {
         try{
             File file = new File(PATH_IMAGE + "/" + fileName.replaceAll(" ","_") + extension);
             multipartFile.transferTo(file);
-
-            if (isImage) {
-                Thumbnails.of(file).size(300,300).outputQuality(1).toFile(file);
-            }
 
         }catch (IOException ex){
             throw new ElementAlreadyExistException("Errore nell'inserimento del file");
