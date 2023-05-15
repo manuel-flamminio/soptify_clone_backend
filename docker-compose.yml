@@ -18,6 +18,7 @@ services:
         restart: always
         volumes:
             - storage:/var/lib/spotify_clone
+            - /etc/nginx/certs:/etc/nginx/certs
         ports:
             - 15000:15000
         environment:
