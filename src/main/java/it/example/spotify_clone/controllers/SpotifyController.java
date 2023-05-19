@@ -49,7 +49,7 @@ public class SpotifyController {
     }
 
     @GetMapping("/albums")
-    public ResponseEntity<List<ReducedAlbumInfo>> getAllAlbums() {
+    public ResponseEntity<List<Album>> getAllAlbums() {
         return ResponseEntity.ok(service.getAllAlbums());
     }
 

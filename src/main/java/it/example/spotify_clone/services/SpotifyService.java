@@ -46,8 +46,8 @@ public class SpotifyService {
         return artistRepository.save(artist);
     }
 
-    public List<ReducedAlbumInfo> getAllAlbums() {
-        return albumRepository.findBy();
+    public List<Album> getAllAlbums() {
+        return albumRepository.findAll();
     }
 
     @Transactional
