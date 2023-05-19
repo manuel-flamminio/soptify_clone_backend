@@ -121,4 +121,17 @@ public class SpotifyService {
         return sectionRepository.save(section);
     }
 
+
+    public Album updateSectionAlbums(Long sectionID, Long albumID) {
+        Section section = sectionRepository.findById(sectionID).
+                orElseThrow(() -> new ElementNotFoundException("section: " + sectionID));
+
+        Album album = albumRepository.findById(albumID).
+                orElseThrow(() -> new ElementNotFoundException("album: " + albumID));
+
+        album.setSection(section);
+
+        return albumRepository.save(album);
+    }
+
 }

@@ -90,4 +90,9 @@ public class SpotifyController {
         return ResponseEntity.ok(service.addSection(sectionName));
     }
 
+    @PutMapping("/sections/{id}/albums")
+    public ResponseEntity<Album> updateSectionAlbums(@PathVariable(name = "id") Long sectionID, @RequestParam("albumID") Long albumID) {
+        return ResponseEntity.ok(service.updateSectionAlbums(sectionID, albumID));
+    }
+
 }
