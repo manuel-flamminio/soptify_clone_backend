@@ -21,4 +21,6 @@ public class AddAlbum {
 
     @NotNull(message = "is missing")
     private MultipartFile cover;
+
+    private Long sectionID;
 }

@@ -52,9 +52,11 @@ public class SpotifyService {
     }
 
     @Transactional
-    public Album addAlbum(String albumTitle, MultipartFile albumCover, Long artistID, String description) {
+    public Album addAlbum(String albumTitle, MultipartFile albumCover, Long artistID, String description, Long sectionID) {
         Artist artist = artistRepository.findById(artistID).
                 orElseThrow(() -> new ElementNotFoundException("artist: " + artistID));
+
+
 
         Album album = new Album();
         album.setArtist(artist);
@@ -64,6 +66,12 @@ public class SpotifyService {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String coverName = timestamp.toString();
         album.setCover(coverName);
+
+        if (sectionID != null && sectionID > 0) {
+            Section section = sectionRepository.findById(sectionID).
+                    orElseThrow(() -> new ElementNotFoundException("section: " + sectionID));
+            album.setSection(section);
+        }
 
         FileUtility.getInstance().store(albumCover, coverName, true);
         return albumRepository.save(album);
