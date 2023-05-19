@@ -95,4 +95,18 @@ public class SpotifyController {
         return ResponseEntity.ok(service.updateSectionAlbums(sectionID, albumID));
     }
 
+    @GetMapping("/sections")
+    public ResponseEntity<List<Section>> getAllSections() {
+        return ResponseEntity.ok(service.getAllSections());
+    }
+
+    @GetMapping("/sections/{id}")
+    public ResponseEntity<Section> getSection(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getSection(id));
+    }
+
+    @GetMapping("/sections/{id}/albums")
+    public ResponseEntity<List<ReducedAlbumInfo>> getSectionAlbums(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getSectionAlbums(id));
+    }
 }
