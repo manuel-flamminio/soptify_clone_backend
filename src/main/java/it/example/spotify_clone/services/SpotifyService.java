@@ -17,6 +17,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import java.sql.Timestamp;
 
 import java.util.List;
 
@@ -60,7 +61,8 @@ public class SpotifyService {
         album.setTitle(albumTitle);
         album.setDescription(description);
 
-        String coverName = artistID + albumTitle;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String coverName = timestamp.toString();
         album.setCover(coverName);
 
         FileUtility.getInstance().store(albumCover, coverName, true);
@@ -71,7 +73,7 @@ public class SpotifyService {
         Album album = albumRepository.findById(albumID).
                 orElseThrow(() -> new ElementNotFoundException("album: " + albumID));
 
-        return FileUtility.getInstance().load(album.getArtist().getId() + album.getTitle(), true);
+        return FileUtility.getInstance().load(album.getCover(), true);
     }
 
     public Album getAlbum(Long albumID) {
