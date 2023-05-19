@@ -2,10 +2,12 @@ package it.example.spotify_clone.services;
 
 import it.example.spotify_clone.entities.Album;
 import it.example.spotify_clone.entities.Artist;
+import it.example.spotify_clone.entities.Section;
 import it.example.spotify_clone.entities.Song;
 import it.example.spotify_clone.exceptions.ElementNotFoundException;
 import it.example.spotify_clone.repositories.AlbumRepository;
 import it.example.spotify_clone.repositories.ArtistRepository;
+import it.example.spotify_clone.repositories.SectionRepository;
 import it.example.spotify_clone.repositories.SongRepository;
 import it.example.spotify_clone.repositories.projections.ReducedAlbumInfo;
 import it.example.spotify_clone.repositories.projections.ReducedSongInfo;
@@ -29,6 +31,9 @@ public class SpotifyService {
 
     @Autowired
     private SongRepository songRepository;
+
+    @Autowired
+    private SectionRepository sectionRepository;
 
     public List<Artist> getAllArtists() {
         return artistRepository.findAll();
@@ -109,4 +114,11 @@ public class SpotifyService {
     public Song getSong(Long songID) {
         return songRepository.findById(songID).orElseThrow(() -> new ElementNotFoundException("song: " + songID));
     }
+
+    public Section addSection(String sectionName) {
+        Section section = new Section();
+        section.setName(sectionName);
+        return sectionRepository.save(section);
+    }
+
 }

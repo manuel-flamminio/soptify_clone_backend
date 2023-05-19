@@ -3,9 +3,11 @@ package it.example.spotify_clone.controllers;
 
 import it.example.spotify_clone.entities.Album;
 import it.example.spotify_clone.entities.Artist;
+import it.example.spotify_clone.entities.Section;
 import it.example.spotify_clone.entities.Song;
 import it.example.spotify_clone.models.AddAlbum;
 import it.example.spotify_clone.models.AddSong;
+import it.example.spotify_clone.repositories.SectionRepository;
 import it.example.spotify_clone.repositories.projections.ReducedAlbumInfo;
 import it.example.spotify_clone.repositories.projections.ReducedSongInfo;
 import it.example.spotify_clone.services.SpotifyService;
@@ -26,6 +28,8 @@ public class SpotifyController {
 
     @Autowired
     private SpotifyService service;
+    @Autowired
+    private SectionRepository sectionRepository;
 
     @GetMapping("/artists")
     public ResponseEntity<List<Artist>> getAllArtists() {
@@ -79,6 +83,11 @@ public class SpotifyController {
     @GetMapping("/albums/{id}/songs")
     public ResponseEntity<List<ReducedSongInfo>> getAlbumSongs(@PathVariable Long id) {
         return  ResponseEntity.ok(service.getAlbumSongs(id));
+    }
+
+    @PostMapping("/sections")
+    public ResponseEntity<Section> addSection(@RequestParam("name") String sectionName) {
+        return ResponseEntity.ok(service.addSection(sectionName));
     }
 
 }
