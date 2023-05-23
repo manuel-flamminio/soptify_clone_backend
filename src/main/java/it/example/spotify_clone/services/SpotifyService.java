@@ -155,4 +155,8 @@ public class SpotifyService {
     public List<ReducedAlbumInfo> getSectionAlbums(Long id) {
         return albumRepository.findBySection_Id(id);
     }
+
+    public List<Song> findSongsByTitle(String songTitle) {
+        return songRepository.findTop10ByTitleContainsIgnoreCase(songTitle);
+    }
 }

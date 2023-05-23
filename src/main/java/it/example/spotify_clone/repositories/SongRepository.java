@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface SongRepository extends JpaRepository<Song, Long> {
     List<ReducedSongInfo> findByAlbum_Id(Long id);
+    List<Song> findTop10ByTitleContainsIgnoreCase(String title);
 }

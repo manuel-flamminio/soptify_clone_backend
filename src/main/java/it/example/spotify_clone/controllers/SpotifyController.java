@@ -109,4 +109,10 @@ public class SpotifyController {
     public ResponseEntity<List<ReducedAlbumInfo>> getSectionAlbums(@PathVariable Long id) {
         return ResponseEntity.ok(service.getSectionAlbums(id));
     }
+
+    @GetMapping("/songs")
+    public ResponseEntity<List<Song>> findSongsByTitle(@RequestParam(name = "title") String songTitle) {
+        return ResponseEntity.ok(service.findSongsByTitle(songTitle));
+    }
+
 }
